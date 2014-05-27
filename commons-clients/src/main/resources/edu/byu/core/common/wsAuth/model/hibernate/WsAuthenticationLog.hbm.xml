@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="edu.byu.core.common.wsAuth.model.hibernate.WsAuthenticationLog" table="AUTHENTICATION_LOG"
+           schema="WSAUTHENTICATION">
+        <cache usage="read-write"/>
+        <id name="logKey" column="LOG_KEY" type="long" length="20">
+            <generator class="native"/>
+        </id>
+
+        <property name="credentialType" column="CREDENTIAL_TYPE" type="string" not-null="true"/>
+        <property name="credentialValue" column="CREDENTIAL_VALUE" type="string" not-null="true"/>
+        <property name="principal" column="PRINCIPAL" type="string" not-null="true"/>
+        <property name="actor" column="ACTOR" type="string"/>
+        <property name="logDate" column="LOG_DATE" type="date" not-null="true"/>
+        <property name="uri" column="URI" type="string" not-null="false"/>
+        <property name="validAuthentication" column="VALID_AUTHENTICATION" type="string" not-null="true"/>
+        <property name="userAgent" column="USER_AGENT" type="string" not-null="false" length="500"/>
+    </class>
+    <query name="get.log.by.principal" cacheable="true">
+        from edu.byu.core.common.wsAuth.model.hibernate.WsAuthenticationLog
+        where principal = :principal
+        order by logDate
+    </query>
+    <query name="get.log.by.actor" cacheable="true">
+        from edu.byu.core.common.wsAuth.model.hibernate.WsAuthenticationLog
+        where actor = :actor
+        order by logDate
+    </query>
+    <query name="get.log.by.credentialType.credentialValue" cacheable="false">
+        from edu.byu.core.common.wsAuth.model.hibernate.WsAuthenticationLog
+        where credentialType = :credentialType
+        and credentialValue = :credentialValue
+        order by logDate
+    </query>
+    <query name="get.log.by.credentialType.credentialValue.logDate" cacheable="false">
+        from edu.byu.core.common.wsAuth.model.hibernate.WsAuthenticationLog
+        where credentialType = :credentialType
+        and credentialValue = :credentialValue
+        and logDate = :logDate
+        order by logDate
+    </query>
+    <query name="get.log.by.principal.date.range" cacheable="false">
+        from edu.byu.core.common.wsAuth.model.hibernate.WsAuthenticationLog
+        where principal = :principal
+        and logDate > :startDate
+        and :endDate > logDate
+        order by logDate
+    </query>
+
+    <query name="get.log.by.uri" cacheable="true">
+        from edu.byu.core.common.wsAuth.model.hibernate.WsAuthenticationLog
+        where uri = :uri
+        order by logDate
+    </query>
+    <query name="get.invalid.authentications" cacheable="true">
+        from edu.byu.core.common.wsAuth.model.hibernate.WsAuthenticationLog
+        where validAuthentication = 'N'
+        and principal = :principal
+        order by logDate
+    </query>
+</hibernate-mapping>

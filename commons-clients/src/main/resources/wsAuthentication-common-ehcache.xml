@@ -1,0 +1,77 @@
+<ehcache name="wsauthentication">
+
+    <diskStore path="java.io.tmpdir/wsauthentication"/>
+
+    <defaultCache
+            maxElementsInMemory="1000"
+            eternal="false"
+            timeToIdleSeconds="300"
+            timeToLiveSeconds="600"
+            overflowToDisk="false"
+            memoryStoreEvictionPolicy="LRU"
+            />
+
+    <cache name="wsAuthentication.edu.byu.ws.authentication.domain.SharedSecretCredential"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"
+           memoryStoreEvictionPolicy="LRU"
+            />
+    <cache name="wsAuthentication.edu.byu.ws.authentication.domain.WsSessionCredential"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"
+           memoryStoreEvictionPolicy="LRU"
+            />
+
+
+    <cache name="wsAuthentication.edu.byu.ws.authentication.domain.Credential"
+           maxElementsInMemory="1000"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"
+           memoryStoreEvictionPolicy="LRU"
+            />
+
+    <cache name="wsAuthentication.edu.byu.ws.authentication.domain.IdentityLogTmp"
+           maxElementsInMemory="100"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"
+           memoryStoreEvictionPolicy="LRU"
+            />
+
+    <!--
+    | Cache for table updates
+    +-->
+    <cache name="wsAuthentication.org.hibernate.cache.spi.UpdateTimestampsCache"
+           maxElementsInMemory="32"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           diskPersistent="false"
+           memoryStoreEvictionPolicy="FIFO"
+            />
+
+    <!--
+    | Cache for queries
+    +-->
+    <cache name="wsAuthentication.org.hibernate.cache.internal.StandardQueryCache"
+           maxElementsInMemory="512"
+           eternal="false"
+           overflowToDisk="false"
+           timeToIdleSeconds="300"
+           timeToLiveSeconds="600"
+           diskPersistent="false"
+           memoryStoreEvictionPolicy="LRU"
+            />
+
+
+</ehcache>

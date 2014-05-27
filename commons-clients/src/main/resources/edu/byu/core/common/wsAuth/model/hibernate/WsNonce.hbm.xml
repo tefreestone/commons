@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="edu.byu.core.common.wsAuth.model.hibernate.WsNonce" table="NONCE" schema="WSAUTHENTICATION">
+        <cache usage="read-write"/>
+        <id name="nonceKey" column="NONCE_KEY" type="long" length="20">
+            <generator class="native"/>
+        </id>
+        <property name="nonceValue" column="NONCE" type="string" not-null="true"/>
+        <property name="wsId" column="WS_ID" type="string" not-null="true"/>
+        <property name="actor" column="ACTOR" type="string"/>
+        <property name="expireDate" column="EXPIRE_DATE" type="date" not-null="true" generated="insert"/>
+    </class>
+    <query name="get.nonce.by.nonceKey" cacheable="false">
+        from edu.byu.core.common.wsAuth.model.hibernate.WsNonce
+        where nonceKey = :nonceKey and
+        expireDate >= current_timestamp()
+    </query>
+    <query name="get.nonce.by.nonce" cacheable="false">
+        from edu.byu.core.common.wsAuth.model.hibernate.WsNonce
+        where nonceValue = :nonce and
+        expireDate >= current_timestamp()
+    </query>
+    <query name="get.nonce.by.wsId" cacheable="false">
+        from edu.byu.core.common.wsAuth.model.hibernate.WsNonce
+        where wsId = :wsId and
+        expireDate >= current_timestamp()
+    </query>
+    <query name="get.nonce.by.wsId.uri" cacheable="true">
+        from edu.byu.core.common.wsAuth.model.hibernate.WsNonce
+        where wsId = :wsId
+        and uri = :uri and
+        expireDate >= current_timestamp()
+    </query>
+    <query name="get.count.by.wsId" cacheable="true">
+        select count (*) from edu.byu.core.common.wsAuth.model.hibernate.WsNonce
+        where wsId = :wsId and
+        expireDate >= current_timestamp()
+    </query>
+
+</hibernate-mapping>
