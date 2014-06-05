@@ -7,19 +7,22 @@
     <bean id="apiKeyPersonId" class="java.lang.String">
     <constructor-arg type="java.lang.String" value="749224702"/>
     </bean>
+    <bean id="personId" class="java.lang.String">
+        <constructor-arg type="java.lang.String" value="405201982"/>
+    </bean>
 
     <bean id="testPersonId" class="java.lang.String">
         <constructor-arg type="java.lang.String" value="123456789"/>
     </bean>
 
     <bean id="testWSId" class="java.lang.String">
-        <constructor-arg type="java.lang.String" value="XJY7fRh4YbfYH9H9IMwv"/>
+        <constructor-arg type="java.lang.String" value="XJY7fRffasdffsah4YbfYH9H9IMwv"/>
     </bean>
     <bean id="testSharedSecret" class="java.lang.String">
-        <constructor-arg type="java.lang.String" value="qQmiYIf-w5rzDGw0c06c5gN7iX9cSH-WM6TPBJI0"/>
+        <constructor-arg type="java.lang.String" value="qQmiYIf75rzfasdffhushghrDGw0c06c5gN7iX9cSHWM6TPBJI0"/>
     </bean>
     <bean id="testActorId" class="java.lang.String">
-        <constructor-arg type="java.lang.String" value="dduck2"/>
+        <constructor-arg type="java.lang.String" value="dukuduck2"/>
     </bean>
 
 
