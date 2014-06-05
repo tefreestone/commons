@@ -16,10 +16,10 @@
     </bean>
 
     <bean id="testWSId" class="java.lang.String">
-        <constructor-arg type="java.lang.String" value="XJY7fRffasdffsah4YbfYH9H9IMwv"/>
+        <constructor-arg type="java.lang.String" value="HRASDgasdf564a34klpv"/>
     </bean>
     <bean id="testSharedSecret" class="java.lang.String">
-        <constructor-arg type="java.lang.String" value="qQmiYIf75rzfasdffhushghrDGw0c06c5gN7iX9cSHWM6TPBJI0"/>
+        <constructor-arg type="java.lang.String" value="mnfhtjg9opwgsdg8523jqwernh9cSHmWM6TPBJI0"/>
     </bean>
     <bean id="testActorId" class="java.lang.String">
         <constructor-arg type="java.lang.String" value="dukuduck2"/>
