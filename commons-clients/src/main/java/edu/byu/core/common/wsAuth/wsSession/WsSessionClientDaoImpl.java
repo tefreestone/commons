@@ -3,9 +3,10 @@ package edu.byu.core.common.wsAuth.wsSession;
 import edu.byu.core.common.wsAuth.api.WSSessionClient;
 import edu.byu.core.common.wsAuth.dao.WsSessionCredentialDAO;
 import edu.byu.core.common.wsAuth.model.hibernate.WsSessionCredential;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,7 +17,8 @@ import java.util.List;
 @Service("wsSessionClientDao")
 public class WsSessionClientDaoImpl implements WSSessionClient {
 
-    @Resource(name = "wsSessionCredentialDAO")
+    @Autowired(required = true)
+    @Qualifier("wsSessionCredentialDAO")
     private WsSessionCredentialDAO wsSessionCredentialDAO;
 
     @Override
@@ -28,8 +30,6 @@ public class WsSessionClientDaoImpl implements WSSessionClient {
             } else {
                 return sessionCredentials.get(0);
             }
-
-
         } else
             throw new IllegalArgumentException("personId == null");
     }
