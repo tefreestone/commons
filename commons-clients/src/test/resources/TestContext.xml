@@ -4,8 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-<bean id="apiKeyPersonId" class="java.lang.String">
-        <constructor-arg type="java.lang.String" value="749224702"/>
+    <bean id="apiKeyPersonId" class="java.lang.String">
+    <constructor-arg type="java.lang.String" value="749224702"/>
     </bean>
 
     <bean id="testPersonId" class="java.lang.String">
@@ -24,7 +24,8 @@
 
 
     <bean id="testURL" class="java.lang.String">
-        <constructor-arg type="java.lang.String" value="https://www.byu.edu"/>
+        <constructor-arg type="java.lang.String"
+                         value="https://ws.byu.edu/example/authentication/hmac/services/v1/exampleWS"/>
     </bean>
 
 

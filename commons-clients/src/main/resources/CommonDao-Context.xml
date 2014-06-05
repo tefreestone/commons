@@ -2,7 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 
     <context:annotation-config/>
@@ -13,5 +14,29 @@
     </bean>
     <bean id="messageDigest" class="java.security.MessageDigest" factory-method="getInstance">
         <constructor-arg value="SHA-512"/>
+    </bean>
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
+        <property name="requestFactory">
+            <bean class="org.springframework.http.client.HttpComponentsClientHttpRequestFactory">
+                <property name="httpClient" ref="httpClient"/>
+            </bean>
+        </property>
+        <property name="messageConverters">
+            <util:list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+                <!--<bean class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">-->
+                <!--<property name="marshaller" ref="jaxbMarshaller"/>-->
+                <!--<property name="unmarshaller" ref="jaxbMarshaller"/>-->
+                <!--</bean>-->
+                <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter"/>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter"/>
+            </util:list>
+        </property>
+    </bean>
+    <bean id="httpClient" class="org.apache.http.impl.client.HttpClients" factory-method="createSystem"/>
+
+
+    <bean id="authHeader" class="java.lang.String">
+        <constructor-arg type="java.lang.String" value="Authorization"/>
     </bean>
 </beans>

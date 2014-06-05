@@ -6,7 +6,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-<bean id="wsAuthSessionFactory" name="wsAuthSessionFactory"
+    <import resource="CommonDao-Context.xml"/>
+    <bean id="wsAuthSessionFactory" name="wsAuthSessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
           p:dataSource-ref="wsAuthDataSource"
           p:mappingLocations="classpath:edu/byu/core/common/wsAuth/model/hibernate/*.hbm.xml">

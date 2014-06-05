@@ -21,7 +21,7 @@ import java.util.List;
  * Date: 10/15/12
  * Time: 3:15 PM
  */
-public abstract class AbstractNonceWSClient extends BaseAbstractWSClient {
+public abstract class AbstractApiKeyNonceWSClient extends BaseAbstractWSClient {
 
     private final Logger LOG = org.slf4j.LoggerFactory.getLogger(this.getClass());
 
@@ -29,15 +29,15 @@ public abstract class AbstractNonceWSClient extends BaseAbstractWSClient {
     private NonceClient nonceClient;
 
 
-    protected AbstractNonceWSClient() {
+    protected AbstractApiKeyNonceWSClient() {
         super();
     }
 
-    protected AbstractNonceWSClient(String authHeader, RestTemplate restTemplate) {
+    protected AbstractApiKeyNonceWSClient(String authHeader, RestTemplate restTemplate) {
         super(authHeader, restTemplate);
     }
 
-    protected AbstractNonceWSClient(String authHeader, NonceClient nonceClient, RestTemplate restTemplate, WSSessionClient wsSessionClient) {
+    protected AbstractApiKeyNonceWSClient(String authHeader, NonceClient nonceClient, RestTemplate restTemplate, WSSessionClient wsSessionClient) {
         super(authHeader, restTemplate);
         this.wsSessionClient = wsSessionClient;
         this.nonceClient = nonceClient;
