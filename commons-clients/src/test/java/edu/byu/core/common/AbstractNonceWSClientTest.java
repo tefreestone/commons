@@ -2,9 +2,9 @@ package edu.byu.core.common;
 
 
 import edu.byu.core.common.wsAuth.AbstractSessionNonceWSClient;
-import edu.byu.core.common.wsAuth.api.WSSessionClient;
 import edu.byu.core.common.wsAuth.nonce.NonceClientDaoImpl;
 import edu.byu.core.common.wsAuth.wsSession.WsSessionClientDaoImpl;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,7 +22,8 @@ import javax.annotation.Resource;
 })
 public class AbstractNonceWSClientTest extends AbstractSessionNonceWSClient {
 
-    private String personId = "405201982";
+    @Resource(name = "personId")
+    private String personId;
 
     @Resource(name = "testURL")
     private String testUrl;
@@ -30,11 +31,24 @@ public class AbstractNonceWSClientTest extends AbstractSessionNonceWSClient {
     @Resource(name = "restTemplate")
     private RestTemplate restTemplate;
 
-    @Resource(name = "wsSessionClient")
-    private WSSessionClient wsSessionClient;
+//    @Resource(name = "wsSessionClient")
+//    private WSSessionClient wsSessionClient;
+
+//    @Resource(name="nonceClient")
+//   private NonceClient nonceClient;
+
+    @Resource(name = "authHeader")
+    private String authHeader;
+
 
     public AbstractNonceWSClientTest() {
-        super("Authentication", new NonceClientDaoImpl(), new RestTemplate(), new WsSessionClientDaoImpl());
+        super("Authorization", new NonceClientDaoImpl(), new RestTemplate(), new WsSessionClientDaoImpl());
+    }
+
+    @Before
+    public void setup() {
+        super.setAuthHeader(authHeader);
+        super.setRestTemplate(restTemplate);
     }
 
     @Test
