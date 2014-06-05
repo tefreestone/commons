@@ -7,7 +7,6 @@
 
 
     <context:annotation-config/>
-    <context:component-scan base-package="edu.byu.core.common.wsAuth.dao"/>
     <context:component-scan base-package="edu.byu.core.common.wsAuth.model"/>
     <bean id="secureRandom" class="java.security.SecureRandom" factory-method="getInstance">
         <constructor-arg value="SHA1PRNG"/>

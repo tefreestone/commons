@@ -5,9 +5,9 @@ import edu.byu.core.common.wsAuth.dao.NonceDAO;
 import edu.byu.core.common.wsAuth.model.hibernate.WsNonce;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,13 +17,12 @@ import org.springframework.stereotype.Service;
  * To change this template use File | Settings | File Templates.
  */
 
-@Service("nonceClientDaoImpl")
+@Service("nonceClientDao")
 public class NonceClientDaoImpl implements NonceClient {
 
     private final Logger LOG = LoggerFactory.getLogger(NonceClientDaoImpl.class);
 
-    @Autowired
-    @Qualifier("nonceDAO")
+    @Resource(name = "nonceDAO")
     private NonceDAO nonceDAO;
 
     @Override

@@ -2,6 +2,8 @@ package edu.byu.core.common;
 
 
 import edu.byu.core.common.wsAuth.AbstractSessionNonceWSClient;
+import edu.byu.core.common.wsAuth.api.NonceClient;
+import edu.byu.core.common.wsAuth.api.WSSessionClient;
 import edu.byu.core.common.wsAuth.nonce.NonceClientDaoImpl;
 import edu.byu.core.common.wsAuth.wsSession.WsSessionClientDaoImpl;
 import org.junit.Before;
@@ -31,11 +33,11 @@ public class AbstractNonceWSClientTest extends AbstractSessionNonceWSClient {
     @Resource(name = "restTemplate")
     private RestTemplate restTemplate;
 
-//    @Resource(name = "wsSessionClient")
-//    private WSSessionClient wsSessionClient;
+    @Resource(name = "wsSessionClientDao")
+    private WSSessionClient wsSessionClient;
 
-//    @Resource(name="nonceClient")
-//   private NonceClient nonceClient;
+    @Resource(name = "nonceClientDao")
+    private NonceClient nonceClient;
 
     @Resource(name = "authHeader")
     private String authHeader;
