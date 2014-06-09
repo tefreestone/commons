@@ -25,7 +25,7 @@ public class WsSessionClientDaoImpl implements WSSessionClient {
     public WsSessionCredential getSession(final String personId) {
         if (personId != null) {
             List<WsSessionCredential> sessionCredentials = wsSessionCredentialDAO.getActiveSessions(personId);
-            if (sessionCredentials == null) {
+            if (sessionCredentials.isEmpty()) {
                 return wsSessionCredentialDAO.createSession(personId);
             } else {
                 return sessionCredentials.get(0);
