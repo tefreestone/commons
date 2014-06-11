@@ -17,13 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.UnsupportedEncodingException;
 
-/**
- * Created by IntelliJ IDEA.
- * User: tef2
- * Date: 3/2/11
- * Time: 3:07 PM
- * To change this template use File | Settings | File Templates.
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
         "classpath:CommonDao-Context.xml",
