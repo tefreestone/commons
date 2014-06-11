@@ -27,8 +27,10 @@
 
 
     <bean id="testURL" class="java.lang.String">
+        <!--<constructor-arg type="java.lang.String"-->
+        <!--value="https://ws.byu.edu/example/authentication/hmac/services/v1/exampleWS"/>-->
         <constructor-arg type="java.lang.String"
-                         value="https://ws.byu.edu/example/authentication/hmac/services/v1/exampleWS"/>
+                         value="https://localhost:8443/Example-HMAC-WS-1.0.0/services/v1/exampleWS"/>
     </bean>
 
 

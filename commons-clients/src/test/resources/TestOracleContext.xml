@@ -6,7 +6,7 @@
 
     <bean id="wsAuthDataSource" class="org.apache.commons.dbcp.BasicDataSource"
           p:driverClassName="edu.byu.jdbc.SecureDriver"
-          p:url="jdbcs[byu@DEV]"
+          p:url="jdbcs[byu@PROD]"
           p:initialSize="2" p:maxIdle="4" p:minIdle="1" p:maxActive="3"
           p:testOnBorrow="true" p:testOnReturn="true" p:testWhileIdle="true"
           p:validationQuery="select 1 from dual"/>
