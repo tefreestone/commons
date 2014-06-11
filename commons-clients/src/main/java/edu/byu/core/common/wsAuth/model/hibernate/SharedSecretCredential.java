@@ -1,6 +1,7 @@
 package edu.byu.core.common.wsAuth.model.hibernate;
 
 
+import edu.byu.core.common.wsAuth.api.Credential;
 import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Mac;

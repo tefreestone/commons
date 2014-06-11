@@ -1,7 +1,7 @@
 package edu.byu.core.common.wsAuth.model.security;
 
 
-import edu.byu.core.common.wsAuth.model.hibernate.Credential;
+import edu.byu.core.common.wsAuth.api.Credential;
 import edu.byu.core.common.wsAuth.model.hibernate.WsSessionCredential;
 
 /**

@@ -1,6 +1,8 @@
 package edu.byu.core.common.wsAuth.wsSession;
 
-import edu.byu.core.common.wsAuth.api.WSSessionClient;
+
+import edu.byu.core.common.wsAuth.api.Credential;
+import edu.byu.core.common.wsAuth.api.CredentialClient;
 import edu.byu.core.common.wsAuth.dao.WsSessionCredentialDAO;
 import edu.byu.core.common.wsAuth.model.hibernate.WsSessionCredential;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +17,14 @@ import java.util.List;
  * Time: 2:57 PM
  */
 @Service("wsSessionClientDao")
-public class WsSessionClientDaoImpl implements WSSessionClient {
+public class WsSessionClientDaoImpl implements CredentialClient {
 
     @Autowired(required = true)
     @Qualifier("wsSessionCredentialDAO")
     private WsSessionCredentialDAO wsSessionCredentialDAO;
 
     @Override
-    public WsSessionCredential getSession(final String personId) {
+    public WsSessionCredential getCredential(final String personId) {
         if (personId != null) {
             List<WsSessionCredential> sessionCredentials = wsSessionCredentialDAO.getActiveSessions(personId);
             if (sessionCredentials.isEmpty()) {
@@ -35,10 +37,10 @@ public class WsSessionClientDaoImpl implements WSSessionClient {
     }
 
     @Override
-    public void deleteSession(final WsSessionCredential credential) {
-        if (credential != null) {
-            wsSessionCredentialDAO.deleteSession(credential);
+    public void expireCredential(final Credential credential) {
+        if (credential != null && credential instanceof WsSessionCredential) {
+            wsSessionCredentialDAO.deleteSession((WsSessionCredential) credential);
         } else
-            throw new IllegalArgumentException("credential == null");
+            throw new IllegalArgumentException("credential == null || credential is not an instance of WsSessionCredential");
     }
 }

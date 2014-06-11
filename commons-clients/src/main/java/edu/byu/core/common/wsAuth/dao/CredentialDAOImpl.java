@@ -1,7 +1,7 @@
 package edu.byu.core.common.wsAuth.dao;
 
 
-import edu.byu.core.common.wsAuth.model.hibernate.Credential;
+import edu.byu.core.common.wsAuth.api.Credential;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

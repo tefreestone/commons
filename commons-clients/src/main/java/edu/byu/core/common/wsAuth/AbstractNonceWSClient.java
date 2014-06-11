@@ -1,8 +1,8 @@
 package edu.byu.core.common.wsAuth;
 
 
+import edu.byu.core.common.wsAuth.api.CredentialClient;
 import edu.byu.core.common.wsAuth.api.NonceClient;
-import edu.byu.core.common.wsAuth.api.WSSessionClient;
 import edu.byu.core.common.wsAuth.model.hibernate.WsNonce;
 import edu.byu.core.common.wsAuth.model.hibernate.WsSessionCredential;
 import edu.byu.core.common.wsAuth.model.security.SessionNonceHmacCredential;
@@ -16,30 +16,26 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * User: tef2
- * Date: 10/15/12
- * Time: 3:15 PM
- */
-public abstract class AbstractSessionNonceWSClient extends BaseAbstractWSClient {
+
+public abstract class AbstractNonceWSClient extends BaseAbstractWSClient {
 
     private final Logger LOG = org.slf4j.LoggerFactory.getLogger(this.getClass());
 
-    private WSSessionClient wsSessionClient;
+    private CredentialClient credentialClient;
     private NonceClient nonceClient;
 
 
-    protected AbstractSessionNonceWSClient() {
+    protected AbstractNonceWSClient() {
         super();
     }
 
-    protected AbstractSessionNonceWSClient(String authHeader, RestTemplate restTemplate) {
+    protected AbstractNonceWSClient(String authHeader, RestTemplate restTemplate) {
         super(authHeader, restTemplate);
     }
 
-    protected AbstractSessionNonceWSClient(String authHeader, NonceClient nonceClient, RestTemplate restTemplate, WSSessionClient wsSessionClient) {
+    protected AbstractNonceWSClient(String authHeader, NonceClient nonceClient, RestTemplate restTemplate, CredentialClient credentialClient) {
         super(authHeader, restTemplate);
-        this.wsSessionClient = wsSessionClient;
+        this.credentialClient = credentialClient;
         this.nonceClient = nonceClient;
     }
 
@@ -51,17 +47,17 @@ public abstract class AbstractSessionNonceWSClient extends BaseAbstractWSClient 
         this.nonceClient = nonceClient;
     }
 
-    public WSSessionClient getWsSessionClient() {
-        return wsSessionClient;
+    public CredentialClient getCredentialClient() {
+        return credentialClient;
     }
 
-    public void setWsSessionClient(WSSessionClient wsSessionClient) {
-        this.wsSessionClient = wsSessionClient;
+    public void setCredentialClient(CredentialClient credentialClient) {
+        this.credentialClient = credentialClient;
     }
 
     private HttpEntity<String> generateHeader(final String personId, final MediaType mediaType) {
         WsNonce nonce = null;
-        WsSessionCredential sessionCredential = wsSessionClient.getSession(personId);
+        WsSessionCredential sessionCredential = (WsSessionCredential) credentialClient.getCredential(personId);
         SessionNonceHmacCredential sessionNonceHmacCredential = new SessionNonceHmacCredential(sessionCredential);
 
         nonce = nonceClient.getNonce(sessionNonceHmacCredential.getId());

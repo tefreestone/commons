@@ -1,4 +1,4 @@
-package edu.byu.core.common.wsAuth.model.hibernate;
+package edu.byu.core.common.wsAuth.api;
 
 import java.util.Date;
 

@@ -1,5 +1,7 @@
 package edu.byu.core.common.wsAuth.model.hibernate;
 
+import edu.byu.core.common.wsAuth.api.Credential;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

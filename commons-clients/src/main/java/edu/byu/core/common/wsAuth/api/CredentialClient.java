@@ -10,8 +10,8 @@ import edu.byu.core.common.wsAuth.model.hibernate.WsSessionCredential;
  * Time: 2:54 PM
  * To change this template use File | Settings | File Templates.
  */
-public interface WSSessionClient {
-    public WsSessionCredential getSession(String personId);
+public interface CredentialClient {
+    public WsSessionCredential getCredential(String personId);
 
-    public void deleteSession(WsSessionCredential credential);
+    public void expireCredential(Credential credential);
 }
