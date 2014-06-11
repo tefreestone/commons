@@ -17,7 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public abstract class AbstractNonceWSClient extends BaseAbstractWSClient {
+public abstract class AbstractSessionNonceWSClient extends BaseAbstractWSClient {
 
     private final Logger LOG = org.slf4j.LoggerFactory.getLogger(this.getClass());
 
@@ -25,15 +25,15 @@ public abstract class AbstractNonceWSClient extends BaseAbstractWSClient {
     private NonceClient nonceClient;
 
 
-    protected AbstractNonceWSClient() {
+    protected AbstractSessionNonceWSClient() {
         super();
     }
 
-    protected AbstractNonceWSClient(String authHeader, RestTemplate restTemplate) {
+    protected AbstractSessionNonceWSClient(String authHeader, RestTemplate restTemplate) {
         super(authHeader, restTemplate);
     }
 
-    protected AbstractNonceWSClient(String authHeader, NonceClient nonceClient, RestTemplate restTemplate, CredentialClient credentialClient) {
+    protected AbstractSessionNonceWSClient(String authHeader, NonceClient nonceClient, RestTemplate restTemplate, CredentialClient credentialClient) {
         super(authHeader, restTemplate);
         this.credentialClient = credentialClient;
         this.nonceClient = nonceClient;
