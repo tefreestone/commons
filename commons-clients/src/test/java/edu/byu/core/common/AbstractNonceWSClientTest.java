@@ -1,11 +1,13 @@
 package edu.byu.core.common;
 
 
+import edu.byu.core.common.TestModel.Message;
 import edu.byu.core.common.wsAuth.AbstractSessionNonceWSClient;
 import edu.byu.core.common.wsAuth.api.NonceClient;
 import edu.byu.core.common.wsAuth.api.WSSessionClient;
 import edu.byu.core.common.wsAuth.nonce.NonceClientDaoImpl;
 import edu.byu.core.common.wsAuth.wsSession.WsSessionClientDaoImpl;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -60,6 +61,9 @@ public class AbstractNonceWSClientTest extends AbstractSessionNonceWSClient {
 
     @Test
     public void testCase() {
-        List<String> result = this.makeWSCall(String.class, personId, testUrl, MediaType.APPLICATION_JSON);
+        Message result = this.makeWSCallSingleton(Message.class, personId, testUrl, MediaType.APPLICATION_XML);
+        Assert.assertNotNull(result);
+        result = this.makeWSCallSingleton(Message.class, personId, testUrl, MediaType.APPLICATION_JSON);
+        Assert.assertNotNull(result);
     }
 }
