@@ -2,9 +2,9 @@ package edu.byu.core.common;
 
 
 import edu.byu.core.common.TestModel.Message;
-import edu.byu.core.common.wsAuth.AbstractSessionNonceWSClient;
+import edu.byu.core.common.wsAuth.AbstractNonceWSClient;
+import edu.byu.core.common.wsAuth.api.CredentialClient;
 import edu.byu.core.common.wsAuth.api.NonceClient;
-import edu.byu.core.common.wsAuth.api.WSSessionClient;
 import edu.byu.core.common.wsAuth.nonce.NonceClientDaoImpl;
 import edu.byu.core.common.wsAuth.wsSession.WsSessionClientDaoImpl;
 import org.junit.Assert;
@@ -25,7 +25,7 @@ import javax.annotation.Resource;
         "classpath:CommonDaoHibernate-Context.xml",
         "classpath:TestOracleContext.xml"
 })
-public class AbstractNonceWSClientTest extends AbstractSessionNonceWSClient {
+public class AbstractNonceWSClientTest extends AbstractNonceWSClient {
 
     @Resource(name = "personId")
     private String personId;
@@ -37,7 +37,7 @@ public class AbstractNonceWSClientTest extends AbstractSessionNonceWSClient {
     private RestTemplate restTemplate;
 
     @Resource(name = "wsSessionClientDao")
-    private WSSessionClient wsSessionClient;
+    private CredentialClient credentialClient;
 
     @Resource(name = "nonceClientDao")
     private NonceClient nonceClient;
@@ -56,7 +56,7 @@ public class AbstractNonceWSClientTest extends AbstractSessionNonceWSClient {
         super.setRestTemplate(restTemplate);
         super.setNonceClient(nonceClient);
         super.setRestTemplate(restTemplate);
-        super.setWsSessionClient(wsSessionClient);
+        super.setCredentialClient(credentialClient);
     }
 
     @Test
