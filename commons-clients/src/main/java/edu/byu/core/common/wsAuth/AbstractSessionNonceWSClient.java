@@ -85,7 +85,6 @@ public abstract class AbstractSessionNonceWSClient extends BaseAbstractWSClient 
             if (LOG.isDebugEnabled()) {
                 LOG.debug("url : " + url);
             }
-            WsSessionCredential sessionCredential = wsSessionClient.getSession(personId);
             HttpEntity<String> httpEntity = generateHeader(personId, mediaType);
             return makeGenericWSCall(type, url, httpEntity);
         } else
