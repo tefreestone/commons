@@ -4,6 +4,7 @@ package edu.byu.core.common;
 import edu.byu.core.common.TestModel.Message;
 import edu.byu.core.common.wsAuth.api.CredentialClient;
 import edu.byu.core.common.wsAuth.wsSession.WsSessionClientDaoImpl;
+import edu.byu.core.common.AbstractSessionUrlWSClient;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
