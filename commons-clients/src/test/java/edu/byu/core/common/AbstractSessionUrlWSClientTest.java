@@ -22,7 +22,7 @@ import javax.annotation.Resource;
         "classpath:CommonDaoHibernate-Context.xml",
         "classpath:TestOracleContext.xml"
 })
-public class AbstractSessionUrlWSClientTest extends edu.byu.core.common.AbstractSessionUrlWSClient {
+public class AbstractSessionUrlWSClientTest extends AbstractSessionUrlWSClient {
 
     @Resource(name = "personId")
     private String personId;
