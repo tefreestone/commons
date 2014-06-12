@@ -4,7 +4,6 @@ import edu.byu.core.common.wsAuth.api.NonceClient;
 import edu.byu.core.common.wsAuth.dao.NonceDAO;
 import edu.byu.core.common.wsAuth.model.hibernate.WsNonce;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,7 +19,7 @@ import javax.annotation.Resource;
 @Service("nonceClientDao")
 public class NonceClientDaoImpl implements NonceClient {
 
-    private final Logger LOG = LoggerFactory.getLogger(NonceClientDaoImpl.class);
+    private final Logger LOG = org.slf4j.LoggerFactory.getLogger(this.getClass());
 
     @Resource(name = "nonceDAO")
     private NonceDAO nonceDAO;
