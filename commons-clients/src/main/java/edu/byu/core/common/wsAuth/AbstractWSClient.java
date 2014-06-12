@@ -11,16 +11,16 @@ import java.util.List;
 /**
  * Created by tefreestone on 2/7/14.
  */
-abstract public class BaseAbstractWSClient {
+abstract public class AbstractWSClient {
 
     protected String authHeader;
 
     protected RestTemplate restTemplate;
 
-    protected BaseAbstractWSClient() {
+    protected AbstractWSClient() {
     }
 
-    protected BaseAbstractWSClient(String authHeader, RestTemplate restTemplate) {
+    protected AbstractWSClient(String authHeader, RestTemplate restTemplate) {
         this.authHeader = authHeader;
         this.restTemplate = restTemplate;
     }
