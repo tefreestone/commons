@@ -33,6 +33,9 @@ public class AbstractAPIKeyNonceWSClientTest extends AbstractAPIKeyNonceWSClient
     @Resource(name = "personId")
     private String badPersonId;
 
+    @Resource(name = "personId")
+    private String actor;
+
     @Resource(name = "testURL")
     private String testUrl;
 
@@ -78,6 +81,10 @@ public class AbstractAPIKeyNonceWSClientTest extends AbstractAPIKeyNonceWSClient
         Message result = this.makeWSCallSingleton(Message.class, personId, testUrl, MediaType.APPLICATION_XML);
         Assert.assertNotNull(result);
         result = this.makeWSCallSingleton(Message.class, personId, testUrl, MediaType.APPLICATION_JSON);
+        Assert.assertNotNull(result);
+        result = this.makeWSCallSingleton(Message.class, personId, actor, testUrl, MediaType.APPLICATION_XML);
+        Assert.assertNotNull(result);
+        result = this.makeWSCallSingleton(Message.class, personId, actor, testUrl, MediaType.APPLICATION_JSON);
         Assert.assertNotNull(result);
     }
 }

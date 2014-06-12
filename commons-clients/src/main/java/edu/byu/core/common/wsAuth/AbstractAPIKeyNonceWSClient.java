@@ -55,7 +55,8 @@ public abstract class AbstractAPIKeyNonceWSClient extends AbstractWSClient {
         this.credentialClient = credentialClient;
     }
 
-    private HttpEntity<String> generateHeader(final String personId, final MediaType mediaType) {
+
+    private HttpEntity<String> generateHeader(final String personId, final MediaType mediaType, final String actor) {
         WsNonce nonce = null;
         SharedSecretCredential sharedSecretCredential = (SharedSecretCredential) credentialClient.getCredential(personId);
         NonceHmacCredential nonceHmacCredential = new NonceHmacCredential(sharedSecretCredential);
@@ -77,23 +78,32 @@ public abstract class AbstractAPIKeyNonceWSClient extends AbstractWSClient {
     }
 
     protected <E> List<E> makeWSCall(final Class<E> type, final String personId, final String url, final MediaType mediaType) {
+        return makeWSCall(type, personId, null, url, mediaType);
+    }
+
+
+    protected <E> List<E> makeWSCall(final Class<E> type, final String personId, final String actorNetId, final String url, final MediaType mediaType) {
         if (type != null && personId != null && url != null) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("url : " + url);
             }
-            HttpEntity<String> httpEntity = generateHeader(personId, mediaType);
+            HttpEntity<String> httpEntity = generateHeader(personId, mediaType, actorNetId);
             return makeGenericWSCall(type, url, httpEntity);
         } else
             throw new IllegalArgumentException("type == null || personId == null || url == null");
     }
 
     protected <E> E makeWSCallSingleton(final Class<E> type, final String personId, final String url, final MediaType mediaType) {
+        return makeWSCallSingleton(type, personId, null, url, mediaType);
+    }
+
+    protected <E> E makeWSCallSingleton(final Class<E> type, final String personId, final String actorNetId, final String url, final MediaType mediaType) {
         if (type != null && personId != null && url != null) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("url : " + url);
             }
 
-            HttpEntity<String> httpEntity = generateHeader(personId, mediaType);
+            HttpEntity<String> httpEntity = generateHeader(personId, mediaType, actorNetId);
             return makeGenericWSCallSingleton(type, url, httpEntity);
         } else
             throw new IllegalArgumentException("type == null || personId == null || url == null");

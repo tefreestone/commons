@@ -31,6 +31,9 @@ public class AbstractAPIKeyUrlWSClientTest extends AbstractAPIKeyUrlWSClient {
     @Resource(name = "personId")
     private String badPersonId;
 
+    @Resource(name = "netId")
+    private String actor;
+
     @Resource(name = "testURL")
     private String testUrl;
 
@@ -72,6 +75,10 @@ public class AbstractAPIKeyUrlWSClientTest extends AbstractAPIKeyUrlWSClient {
         Message result = this.makeWSCallSingleton(Message.class, personId, testUrl, MediaType.APPLICATION_XML);
         Assert.assertNotNull(result);
         result = this.makeWSCallSingleton(Message.class, personId, testUrl, MediaType.APPLICATION_JSON);
+        Assert.assertNotNull(result);
+        result = this.makeWSCallSingleton(Message.class, personId, actor, testUrl, MediaType.APPLICATION_XML);
+        Assert.assertNotNull(result);
+        result = this.makeWSCallSingleton(Message.class, personId, actor, testUrl, MediaType.APPLICATION_JSON);
         Assert.assertNotNull(result);
     }
 }

@@ -3,7 +3,6 @@ package edu.byu.core.common.wsAuth;
 
 import edu.byu.core.common.wsAuth.api.CredentialClient;
 import edu.byu.core.common.wsAuth.model.hibernate.SharedSecretCredential;
-import edu.byu.core.common.wsAuth.model.hibernate.WsNonce;
 import edu.byu.core.common.wsAuth.model.security.UrlHmacCredential;
 import org.slf4j.Logger;
 import org.springframework.http.HttpEntity;
@@ -45,15 +44,17 @@ public abstract class AbstractAPIKeyUrlWSClient extends AbstractWSClient {
         this.credentialClient = credentialClient;
     }
 
-    private HttpEntity<String> generateHeader(final String personId, final MediaType mediaType, final String url) {
-        WsNonce nonce = null;
+    private HttpEntity<String> generateHeader(final String personId, final String actor, final MediaType mediaType, final String url) {
         SharedSecretCredential sharedSecretCredential = (SharedSecretCredential) credentialClient.getCredential(personId);
         UrlHmacCredential urlHmacCredential = new UrlHmacCredential(sharedSecretCredential);
 
-
         String authHeaderValue = null;
         try {
-            authHeaderValue = urlHmacCredential.generateHeader(urlHmacCredential.getId(), url);
+            if (actor == null) {
+                authHeaderValue = urlHmacCredential.generateHeader(urlHmacCredential.getId(), url);
+            } else {
+                authHeaderValue = urlHmacCredential.generateHeader(urlHmacCredential.getId(), url, actor);
+            }
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -66,23 +67,31 @@ public abstract class AbstractAPIKeyUrlWSClient extends AbstractWSClient {
     }
 
     protected <E> List<E> makeWSCall(final Class<E> type, final String personId, final String url, final MediaType mediaType) {
+        return makeWSCall(type, personId, null, url, mediaType);
+    }
+
+    protected <E> List<E> makeWSCall(final Class<E> type, final String personId, final String actor, final String url, final MediaType mediaType) {
         if (type != null && personId != null && url != null) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("url : " + url);
             }
-            HttpEntity<String> httpEntity = generateHeader(personId, mediaType, url);
+            HttpEntity<String> httpEntity = generateHeader(personId, actor, mediaType, url);
             return makeGenericWSCall(type, url, httpEntity);
         } else
             throw new IllegalArgumentException("type == null || personId == null || url == null");
     }
 
     protected <E> E makeWSCallSingleton(final Class<E> type, final String personId, final String url, final MediaType mediaType) {
+        return makeWSCallSingleton(type, personId, null, url, mediaType);
+    }
+
+    protected <E> E makeWSCallSingleton(final Class<E> type, final String personId, final String actor, final String url, final MediaType mediaType) {
         if (type != null && personId != null && url != null) {
             if (LOG.isDebugEnabled()) {
                 LOG.debug("url : " + url);
             }
 
-            HttpEntity<String> httpEntity = generateHeader(personId, mediaType, url);
+            HttpEntity<String> httpEntity = generateHeader(personId, actor, mediaType, url);
             return makeGenericWSCallSingleton(type, url, httpEntity);
         } else
             throw new IllegalArgumentException("type == null || personId == null || url == null");
