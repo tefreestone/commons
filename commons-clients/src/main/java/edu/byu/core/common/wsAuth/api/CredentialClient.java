@@ -1,8 +1,6 @@
 package edu.byu.core.common.wsAuth.api;
 
 
-import edu.byu.core.common.wsAuth.model.hibernate.WsSessionCredential;
-
 /**
  * Created with IntelliJ IDEA.
  * User: tef2
@@ -11,7 +9,7 @@ import edu.byu.core.common.wsAuth.model.hibernate.WsSessionCredential;
  * To change this template use File | Settings | File Templates.
  */
 public interface CredentialClient {
-    public WsSessionCredential getCredential(String personId);
+    public Credential getCredential(String personId);
 
     public void expireCredential(Credential credential);
 }
