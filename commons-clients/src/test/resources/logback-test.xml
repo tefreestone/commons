@@ -57,6 +57,8 @@
     <logger name="net.sf.ehcache" level="INFO">
         <appender-ref ref="C"/>
     </logger>
-
+    <logger name="org.apache" level="INFO">
+        <appender-ref ref="C"/>
+    </logger>
 
 </configuration>
