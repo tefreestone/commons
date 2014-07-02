@@ -27,7 +27,7 @@ import java.util.Date;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:CommonDao-Context.xml",
+        "classpath:Common-Context.xml",
         "classpath:TestContext.xml",
 //        "classpath:TestHSQLContext.xml"
         "classpath:CommonDaoHibernate-Context.xml",

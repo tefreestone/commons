@@ -20,7 +20,7 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:CommonDao-Context.xml",
+        "classpath:Common-Context.xml",
         "classpath:CommonDaoHibernate-Context.xml",
         "classpath:TestOracleContext.xml",
 //          "classpath:TestHSQLContext.xml",

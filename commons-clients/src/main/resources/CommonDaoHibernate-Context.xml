@@ -6,11 +6,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <import resource="CommonDao-Context.xml"/>
+    <import resource="Common-Context.xml"/>
 
 
     <context:annotation-config/>
-    <context:component-scan base-package="edu.byu.core.common.wsAuth.nonce"/>
+    <!--<context:component-scan base-package="edu.byu.core.common.wsAuth.nonce"/>-->
     <context:component-scan base-package="edu.byu.core.common.wsAuth.wsSession"/>
     <context:component-scan base-package="edu.byu.core.common.wsAuth.dao"/>
     <context:component-scan base-package="edu.byu.core.common.wsAuth.APIKey"/>
@@ -46,5 +46,6 @@
 
     <tx:annotation-driven transaction-manager="wsAuthTransactionManager" proxy-target-class="true" mode="proxy"/>
 
+    <bean id="nonceClient" class="edu.byu.core.common.wsAuth.nonce.NonceClientDaoImpl" p:nonceDAO-ref="nonceDAO"/>
 
 </beans>

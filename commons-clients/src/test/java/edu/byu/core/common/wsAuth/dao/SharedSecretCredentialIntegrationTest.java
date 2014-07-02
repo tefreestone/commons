@@ -12,7 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:CommonDao-Context.xml",
+@ContextConfiguration(locations = {"classpath:Common-Context.xml",
         "classpath:TestContext.xml",
         "classpath:TestHSQLContext.xml"})
 
