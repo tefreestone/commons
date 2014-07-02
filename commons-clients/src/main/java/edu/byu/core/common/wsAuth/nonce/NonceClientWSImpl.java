@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
@@ -22,7 +21,7 @@ import java.util.Arrays;
  * To change this template use File | Settings | File Templates.
  */
 
-@Service("nonceClientWS")
+
 public class NonceClientWSImpl extends AbstractWSClient implements NonceClient {
 
     private final Logger LOG = org.slf4j.LoggerFactory.getLogger(this.getClass());

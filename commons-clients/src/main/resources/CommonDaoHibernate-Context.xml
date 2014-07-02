@@ -46,6 +46,6 @@
 
     <tx:annotation-driven transaction-manager="wsAuthTransactionManager" proxy-target-class="true" mode="proxy"/>
 
-    <bean id="nonceClient" class="edu.byu.core.common.wsAuth.nonce.NonceClientDaoImpl" p:nonceDAO-ref="nonceDAO"/>
+    <bean id="nonceClientDao" class="edu.byu.core.common.wsAuth.nonce.NonceClientDaoImpl" p:nonceDAO-ref="nonceDAO"/>
 
 </beans>
