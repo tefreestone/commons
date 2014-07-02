@@ -24,6 +24,14 @@ public class NonceClientDaoImpl implements NonceClient {
     @Resource(name = "nonceDAO")
     private NonceDAO nonceDAO;
 
+    public NonceDAO getNonceDAO() {
+        return nonceDAO;
+    }
+
+    public void setNonceDAO(NonceDAO nonceDAO) {
+        this.nonceDAO = nonceDAO;
+    }
+
     @Override
     public WsNonce getNonce(final String wsId) {
         if (wsId != null) {
